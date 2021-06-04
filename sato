@@ -6,10 +6,11 @@
     :画面表示無しでファイル実行] 
       note right: 今すぐアップデート開始
     :確認ダイアログをスキップ]
-    :自動アップデート実行]
-      while (実行中？) is (Yes)
-      :アップデート中のダイアログは消さない]
-      endwhile
+    repeat :自動アップデート実行]
+      backward:アップデート中のダイアログは消さない]
+      repeat while(実行中？) is (Yes) not (No)
+      ':アップデート中のダイアログは消さない]
+      'endwhile
       if (アップデート終了？) then(Yes)
       :アップデート完了]
       else(No)
