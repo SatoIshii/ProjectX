@@ -1,16 +1,30 @@
 @startuml [自動化スクリプト]
   start
     :作業用フォルダ作成]
+     note right
+      $dir = 'C:\_Windows_FU\packages'
+      mkdir $dir
+      end note
     :更新アシスタントをダウンロードするファイル指定]
+     note right: $file = "$($dir)\Win10Upgrade.exe"
     :Win10更新アシスタントダウンロード]
+     note right
+       $webClient = New-Object System.Net.WebClient
+       $url = 'https://go.microsoft.com/fwlink/?LinkID=799445'
+       $webClient.DownloadFile($url,$file)
+       end note
     :画面表示無しでファイル実行] 
-      note right: 今すぐアップデート開始
+      note right
+       今すぐアップデート開始
+       quietinstall
+       end note
     :確認ダイアログをスキップ]
+    note right:skipeula 
     repeat :自動アップデート実行]
-      backward:アップデート中のダイアログは消さない]
+       'floating note right: auto upgrade
+    　backward:アップデート中のダイアログは消さない]
+       note right:-Wait
       repeat while(実行中？) is (Yes) not (No)
-      ':アップデート中のダイアログは消さない]
-      'endwhile
       if (アップデート終了？) then(Yes)
       :アップデート完了]
       else(No)
@@ -18,6 +32,6 @@
       detach
       endif 
     :win10更新アシスタントアンインストール]
+     note right:UninstallUponUpgrade
   stop
-
 @enduml
