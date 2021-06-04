@@ -19,11 +19,11 @@
        quietinstall
        end note
     :確認ダイアログをスキップ]
-    note right:skipeula 
+      note right: skipeula 
     repeat :自動アップデート実行]
-       'floating note right: auto upgrade
-    　backward:アップデート中のダイアログは消さない]
-       note right:-Wait
+      note left: auto upgrade
+    backward:アップデート中のダイアログは消さない]
+       note right: -Wait
       repeat while(実行中？) is (Yes) not (No)
       if (アップデート終了？) then(Yes)
       :アップデート完了]
